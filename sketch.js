@@ -10,28 +10,31 @@ function preload(){
 
   car2 = loadImage("red_car.png");  
 
-  car3 = loadImage("green_car.png");  
+  car3 = loadImage("yellow_car.png");  
 
-  car4 = loadImage("yellow_car.png");  
+  car4 = loadImage("green_car.png");  
 
 }
 
 
 function setup() {
     createCanvas(1600,600);
-    car = createSprite(125,300,50,50);
-    car.addImage("C1",car1);
-    car.addImage("C2",car2);
-    car.addImage("C3",car3);
-    car.addImage("C4",car4);
+
+    speed = random(55,90);
+    weight = random(400,1500);
+
+    car = createSprite(125,300,250,250);
     car.scale = 0.5;
+    car.addImage("PC",car1);
+    car.addImage("RC",car2);
+    car.addImage("YC",car3);
+    car.addImage("GC",car4);
     car.velocityX = speed;
+    car.shapeColor = "white";
 
     wall = createSprite(1500,300,60,height/2);
     wall.shapeColor = "white";
-      
-    speed = random(55,90);
-    weight = random(400,1500);
+   
 }
 
 function draw() {
@@ -43,15 +46,15 @@ function draw() {
     var deformation = 0.5 * weight * speed * speed/22500;
 
     if( deformation > 180){
-     car.changeImage("C2",car2);
+    car.changeImage("RC",car2);
     }
 
     if(deformation<180 && deformation>100){
-     car.changeImage("C4",car4);
+    car.changeImage("YC",car3);
     }
 
     if(deformation < 100){
-     car.changeImage("C3",car3) ;   
+     car.changeImage("GC",car4);
     }
 
   }
